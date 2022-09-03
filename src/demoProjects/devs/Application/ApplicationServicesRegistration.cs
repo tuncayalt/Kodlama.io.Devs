@@ -15,9 +15,7 @@ namespace Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-            services.AddScoped<CreateLanguageBusinessRules>();
-            services.AddScoped<UpdateLanguageBusinessRules>();
-            services.AddScoped<DeleteLanguageBusinessRules>();
+            services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseLanguageBusinessRules));
 
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
@@ -25,6 +23,16 @@ namespace Application
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
+            return services;
+        }
+
+        public static IServiceCollection AddSubClassesOfType(this IServiceCollection services, Assembly assembly, Type type)
+        {
+            var types = assembly.GetTypes().Where(t => t.IsSubclassOf(type) && type != t).ToList();
+            foreach (var item in types)
+            {
+                services.AddScoped(item);
+            }
             return services;
         }
     }
