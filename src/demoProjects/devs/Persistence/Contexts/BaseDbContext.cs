@@ -7,7 +7,7 @@ namespace Persistence.Contexts
     public class BaseDbContext : DbContext
     {
         protected IConfiguration Configuration { get; set; }
-        public DbSet<Language> LanguageEntities { get; set; }
+        public DbSet<Language> Languages { get; set; }
 
         public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
         {

@@ -14,6 +14,9 @@ namespace Application.Features.Languages.Profiles
             CreateMap<Language, CreatedLanguageDto>();
 
             CreateMap<UpdateLanguageCommand, Language>();
+            CreateMap<Language, UpdatedLanguageDto>();
+
+            CreateMap<Language, DeletedLanguageDto>();
         }
     }
 }

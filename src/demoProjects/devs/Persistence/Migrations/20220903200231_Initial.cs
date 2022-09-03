@@ -9,7 +9,7 @@ namespace Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "LanguageEntities",
+                name: "Languages",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -18,16 +18,16 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LanguageEntities", x => x.Id);
+                    table.PrimaryKey("PK_Languages", x => x.Id);
                 });
 
             migrationBuilder.InsertData(
-                table: "LanguageEntities",
+                table: "Languages",
                 columns: new[] { "Id", "Name" },
                 values: new object[] { 1, "C#" });
 
             migrationBuilder.InsertData(
-                table: "LanguageEntities",
+                table: "Languages",
                 columns: new[] { "Id", "Name" },
                 values: new object[] { 2, "Java" });
         }
@@ -35,7 +35,7 @@ namespace Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "LanguageEntities");
+                name: "Languages");
         }
     }
 }

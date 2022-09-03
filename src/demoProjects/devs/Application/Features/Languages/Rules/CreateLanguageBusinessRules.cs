@@ -3,13 +3,10 @@ using Core.CrossCuttingConcerns.Exceptions;
 
 namespace Application.Features.Languages.Rules
 {
-    public class CreateLanguageBusinessRules
+    public class CreateLanguageBusinessRules : BaseLanguageBusinessRules
     {
-        private readonly ILanguageRepository _languageRepository;
-
-        public CreateLanguageBusinessRules(ILanguageRepository languageRepository)
+        public CreateLanguageBusinessRules(ILanguageRepository languageRepository) : base(languageRepository)
         {
-            _languageRepository = languageRepository;
         }
 
         public async Task LanguageNameCannotBeDuplicated(string name)

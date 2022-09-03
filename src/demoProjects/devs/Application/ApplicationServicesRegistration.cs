@@ -16,6 +16,8 @@ namespace Application
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             services.AddScoped<CreateLanguageBusinessRules>();
+            services.AddScoped<UpdateLanguageBusinessRules>();
+            services.AddScoped<DeleteLanguageBusinessRules>();
 
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
