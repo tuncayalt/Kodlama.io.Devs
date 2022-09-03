@@ -1,7 +1,9 @@
 ﻿using Application.Features.Languages.Commands.CreateLanguage;
 using Application.Features.Languages.Commands.UpdateLanguage;
 using Application.Features.Languages.Dtos;
+using Application.Features.Languages.Models;
 using AutoMapper;
+using Core.Persistence.Paging;
 using Domain.Entities;
 
 namespace Application.Features.Languages.Profiles
@@ -19,6 +21,9 @@ namespace Application.Features.Languages.Profiles
             CreateMap<Language, DeletedLanguageDto>();
 
             CreateMap<Language, GetByIdLanguageDto>();
+
+            CreateMap<IPaginate<Language>, GetListLanguagesModel>();
+            CreateMap<Language, GetListLanguageDto>();
         }
     }
 }
