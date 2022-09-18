@@ -5,6 +5,7 @@ namespace Domain.Entities
     public class Language : Entity
     {
         public string Name { get; set; }
+        public virtual ICollection<Technology> Technologies { get; set; }
 
         public Language()
         {
