@@ -1,4 +1,5 @@
 ﻿using Application.Features.Languages.Rules;
+using Application.Features.Technologies.Rules;
 using Core.Application.Pipelines.Validation;
 using FluentValidation;
 using MediatR;
@@ -16,6 +17,7 @@ namespace Application
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseLanguageBusinessRules));
+            services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseTechnologyBusinessRules));
 
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));

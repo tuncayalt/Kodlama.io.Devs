@@ -1,9 +1,9 @@
-﻿using FluentValidation;
-using FluentValidation.Results;
+﻿using Core.Application.Validation;
+using FluentValidation;
 
 namespace Application.Features.Languages.Commands.UpdateLanguage
 {
-    public class UpdateLanguageCommandValidator : AbstractValidator<UpdateLanguageCommand>
+    public class UpdateLanguageCommandValidator : BaseValidator<UpdateLanguageCommand>
     {
         public UpdateLanguageCommandValidator()
         {
@@ -11,14 +11,7 @@ namespace Application.Features.Languages.Commands.UpdateLanguage
                 .NotNull()
                 .GreaterThan(0);
 
-            RuleFor(u => u.Name).NotEmpty();
-        }
-
-        public override async Task<ValidationResult> ValidateAsync(ValidationContext<UpdateLanguageCommand> context, CancellationToken cancellation = default)
-        {
-            return context.InstanceToValidate == null
-                ? new ValidationResult(new[] { new ValidationFailure(nameof(UpdateLanguageCommand), $"{nameof(UpdateLanguageCommand)} cannot be null") })
-                : await base.ValidateAsync(context, cancellation);
+            RuleFor(u => u.Name).NotEmpty().MaximumLength(64);
         }
     }
 }
