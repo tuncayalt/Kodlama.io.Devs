@@ -1,6 +1,8 @@
-﻿using Domain.Entities;
+﻿using Core.Security.Entities;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Persistence.EntityConfigurations;
 
 namespace Persistence.Contexts
 {
@@ -10,6 +12,13 @@ namespace Persistence.Contexts
         public DbSet<Language> Languages { get; set; }
         public DbSet<Technology> Technologies { get; set; }
 
+        //User entities
+        public DbSet<User> Users { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+
         public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
         {
             Configuration = configuration;
@@ -17,32 +26,13 @@ namespace Persistence.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Language>(l =>
-            {
-                l.ToTable("Languages").HasKey(k => k.Id);
-                l.Property(p => p.Id).HasColumnName("Id");
-                l.Property(p => p.Name).HasColumnName("Name").HasMaxLength(64);
-                l.HasMany(p => p.Technologies);
-            });
-            modelBuilder.Entity<Technology>(t =>
-            {
-                t.ToTable("Technologies").HasKey(k => k.Id);
-                t.Property(p => p.Id).HasColumnName("Id");
-                t.Property(p => p.Name).HasColumnName("Name").HasMaxLength(64);
-                t.HasOne(p => p.Language);
-            });
-
-            var languageEntitySeeds = new List<Language>
-            {
-                new(1, "C#"), new(2, "Java")
-            };
-            modelBuilder.Entity<Language>().HasData(languageEntitySeeds);
-
-            var technologyEntitySeeds = new List<Technology>
-            {
-                new(1, "ASP.NET", 1), new(2, "Spring", 2), new(3, "SignalR", 1)
-            };
-            modelBuilder.Entity<Technology>().HasData(technologyEntitySeeds);
+            modelBuilder.ApplyConfiguration(new LanguageConfiguration());
+            modelBuilder.ApplyConfiguration(new TechnologyConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new ApplicationUserConfiguration());
+            modelBuilder.ApplyConfiguration(new OperationClaimConfiguration());
+            modelBuilder.ApplyConfiguration(new UserOperationClaimConfiguration());
+            modelBuilder.ApplyConfiguration(new RefreshTokenConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
