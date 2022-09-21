@@ -1,6 +1,10 @@
-﻿using Application.Features.Languages.Rules;
+﻿using Application.Features.ApplicationUsers.Rules;
+using Application.Features.Languages.Rules;
 using Application.Features.Technologies.Rules;
+using Application.Services.AuthenticationServices;
+using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Validation;
+using Core.Security.JWT;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,12 +22,15 @@ namespace Application
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseLanguageBusinessRules));
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseTechnologyBusinessRules));
+            services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseApplicationUserBusinessRules));
 
-            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheRemovingBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             return services;
         }

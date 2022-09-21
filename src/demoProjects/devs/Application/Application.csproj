@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Features\ApplicationUsers\Constants\" />
+    <Folder Include="Features\ApplicationUsers\Queries\" />
     <Folder Include="Features\Languages\Constants\" />
     <Folder Include="Features\Technologies\Constants\" />
   </ItemGroup>

@@ -16,6 +16,8 @@ namespace Persistence
 
             services.AddScoped<ILanguageRepository, LanguageRepository>();
             services.AddScoped<ITechnologyRepository, TechnologyRepository>();
+            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }
