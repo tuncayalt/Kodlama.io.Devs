@@ -16,8 +16,16 @@ namespace Application.Features.ApplicationUsers.Profiles
                 .ForMember(dst => dst.LastName, opt => opt.MapFrom(src => src.User.LastName))
                 .ForMember(dst => dst.Email, opt => opt.MapFrom(src => src.User.Email))
                 .ForMember(dst => dst.AuthenticatorType, opt => opt.MapFrom(src => src.User.AuthenticatorType));
+            
             CreateMap<CreateApplicationUserCommand, ApplicationUser>();
             CreateMap<CreateApplicationUserCommand, User>();
+            
+            CreateMap<ApplicationUser, LoggedInApplicationUserDto>()
+                .ForMember(dst => dst.Status, opt => opt.MapFrom(src => src.User.Status))
+                .ForMember(dst => dst.FirstName, opt => opt.MapFrom(src => src.User.FirstName))
+                .ForMember(dst => dst.LastName, opt => opt.MapFrom(src => src.User.LastName))
+                .ForMember(dst => dst.Email, opt => opt.MapFrom(src => src.User.Email))
+                .ForMember(dst => dst.AuthenticatorType, opt => opt.MapFrom(src => src.User.AuthenticatorType));
         }
     }
 }

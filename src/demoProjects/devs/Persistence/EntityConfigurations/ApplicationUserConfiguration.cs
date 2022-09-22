@@ -16,7 +16,6 @@ namespace Persistence.EntityConfigurations
             builder.Property(p => p.GitHubAddress).HasColumnName("GitHubAddress").HasMaxLength(128);
             builder.HasOne(d => d.User);
 
-            HashingHelper.CreatePasswordHash("Pass123", out var passwordHash, out var passwordSalt);
             var applicationUserSeeds = new List<ApplicationUser>
             {
                 new(1, 1, "https://github.com/tuncayalt")

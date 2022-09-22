@@ -4,7 +4,6 @@ using Application.Features.Technologies.Rules;
 using Application.Services.AuthenticationServices;
 using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Validation;
-using Core.Security.JWT;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
