@@ -1,4 +1,4 @@
-﻿using Application.Features.ApplicationUsers.Dtos;
+﻿using Application.Features.Auth.Dtos;
 using Core.Persistence.Repositories;
 using Core.Security.Entities;
 using Domain.Entities;

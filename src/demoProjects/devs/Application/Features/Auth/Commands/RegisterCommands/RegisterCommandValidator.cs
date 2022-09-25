@@ -1,11 +1,11 @@
 ﻿using Core.Application.Validation;
 using FluentValidation;
 
-namespace Application.Features.ApplicationUsers.Commands.CreateApplicationUser
+namespace Application.Features.Auth.Commands.RegisterCommands
 {
-    public class CreateApplicationUserCommandValidator : BaseValidator<CreateApplicationUserCommand>
+    public class RegisterCommandValidator : BaseValidator<RegisterCommand>
     {
-        public CreateApplicationUserCommandValidator()
+        public RegisterCommandValidator()
         {
             RuleFor(a => a.FirstName).NotEmpty();
             RuleFor(a => a.LastName).NotEmpty();

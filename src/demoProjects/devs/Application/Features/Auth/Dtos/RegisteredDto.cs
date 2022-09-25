@@ -1,9 +1,8 @@
-﻿using Core.Security.Dtos;
-using Core.Security.Enums;
+﻿using Core.Security.Enums;
 
-namespace Application.Features.ApplicationUsers.Dtos
+namespace Application.Features.Auth.Dtos
 {
-    public class CreatedApplicationUserDto
+    public class RegisteredDto
     {
         public int Id { get; set; }
         public int UserId { get; set; }
