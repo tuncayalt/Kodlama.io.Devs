@@ -1,9 +1,9 @@
-﻿using Application.Features.ApplicationUsers.Models;
+﻿using Application.Features.Auth.Models;
 using MediatR;
 
-namespace Application.Features.ApplicationUsers.Commands.CreateApplicationUser
+namespace Application.Features.Auth.Commands.RegisterCommands
 {
-    public class CreateApplicationUserCommand : IRequest<CreatedApplicationUserModel>
+    public class RegisterCommand : IRequest<RegisteredModel>
     {
         public string Email { get; set; }
         public string Password { get; set; }

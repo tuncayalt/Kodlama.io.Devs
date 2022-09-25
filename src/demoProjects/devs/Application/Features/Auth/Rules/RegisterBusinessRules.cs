@@ -1,9 +1,9 @@
 ﻿using Core.CrossCuttingConcerns.Exceptions;
 using Domain.Entities;
 
-namespace Application.Features.ApplicationUsers.Rules
+namespace Application.Features.Auth.Rules
 {
-    public class CreateApplicationUserBusinessRules : BaseApplicationUserBusinessRules
+    public class RegisterBusinessRules : BaseAuthBusinessRules
     {
         internal void UserShouldNotExist(ApplicationUser? existingUser)
         {

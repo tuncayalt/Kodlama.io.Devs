@@ -1,6 +1,6 @@
-﻿using Application.Features.ApplicationUsers.Commands.CreateApplicationUser;
-using Application.Features.ApplicationUsers.Commands.LoginApplicationUser;
-using Application.Features.ApplicationUsers.Dtos;
+﻿using Application.Features.Auth.Commands.RegisterCommands;
+using Application.Features.Auth.Commands.LoginCommands;
+using Application.Features.Auth.Dtos;
 using Application.Services.Repositories;
 using AutoMapper;
 using Core.Security.Dtos;
@@ -39,13 +39,13 @@ namespace Application.Services.AuthenticationServices
             return _applicationUserRepository.GetAsync(u => u.User.Email == email, u => u.Include(a => a.User));
         }
 
-        public Task<bool> LoginAsync(LoginApplicationUserCommand request, ApplicationUser existingUser)
+        public Task<bool> LoginAsync(LoginCommand request, ApplicationUser existingUser)
         {
             var result = HashingHelper.VerifyPasswordHash(request.Password, existingUser.User.PasswordHash, existingUser.User.PasswordSalt);
             return Task.FromResult(result);
         }
 
-        public async Task<ApplicationUser> RegisterAsync(CreateApplicationUserCommand request)
+        public async Task<ApplicationUser> RegisterAsync(RegisterCommand request)
         {
             byte[] passwordHash, passwordSalt;
             HashingHelper.CreatePasswordHash(request.Password, out passwordHash, out passwordSalt);
