@@ -19,6 +19,8 @@ namespace Persistence
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+            services.AddScoped<IOperationClaimRepository, OperationClaimRepository>();
+            services.AddScoped<IUserOperationClaimRepository, UserOperationClaimRepository>();
 
             return services;
         }

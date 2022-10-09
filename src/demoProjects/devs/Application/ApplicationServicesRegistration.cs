@@ -2,6 +2,7 @@
 using Application.Features.Auth.Rules;
 using Application.Features.Languages.Rules;
 using Application.Features.Technologies.Rules;
+using Application.Features.UserOperationClaims.Rules;
 using Application.Services.AuthenticationServices;
 using Core.Application.Pipelines.Authorization;
 using Core.Application.Pipelines.Validation;
@@ -24,6 +25,7 @@ namespace Application
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseTechnologyBusinessRules));
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseAuthBusinessRules));
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseApplicationUserBusinessRules));
+            services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseUserOperationClaimBusinessRules));
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
