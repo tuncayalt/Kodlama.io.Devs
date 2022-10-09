@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Contexts;
 
@@ -11,9 +12,10 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    partial class BaseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221009212400_AddAdminRole")]
+    partial class AddAdminRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -196,8 +198,8 @@ namespace Persistence.Migrations
                             Email = "tuncayalt@gmail.com",
                             FirstName = "Tuncay",
                             LastName = "Altinpulluk",
-                            PasswordHash = new byte[] { 118, 66, 130, 65, 26, 251, 61, 126, 205, 202, 210, 152, 27, 227, 38, 91, 211, 25, 225, 193, 57, 133, 234, 22, 103, 247, 215, 121, 98, 161, 108, 59, 36, 224, 228, 166, 65, 9, 240, 30, 185, 83, 220, 73, 57, 182, 96, 120, 89, 6, 253, 81, 59, 25, 200, 90, 125, 203, 143, 35, 95, 219, 71, 20 },
-                            PasswordSalt = new byte[] { 23, 177, 64, 71, 17, 126, 213, 58, 47, 57, 54, 232, 159, 94, 204, 62, 57, 138, 88, 110, 92, 242, 51, 72, 178, 64, 168, 128, 254, 60, 150, 239, 162, 3, 188, 14, 240, 170, 106, 197, 245, 70, 111, 124, 47, 39, 247, 222, 139, 70, 78, 151, 115, 228, 158, 15, 133, 176, 137, 114, 89, 213, 122, 64, 147, 2, 125, 197, 123, 42, 110, 158, 248, 95, 48, 144, 132, 116, 59, 116, 203, 243, 240, 67, 107, 11, 24, 91, 68, 180, 229, 192, 12, 55, 210, 197, 47, 214, 43, 47, 102, 131, 121, 112, 184, 210, 163, 84, 40, 21, 77, 204, 176, 140, 224, 27, 219, 76, 139, 120, 82, 76, 198, 139, 139, 138, 172, 42 },
+                            PasswordHash = new byte[] { 101, 225, 216, 49, 67, 30, 86, 213, 219, 239, 243, 228, 208, 25, 200, 71, 16, 104, 103, 215, 24, 103, 41, 103, 126, 181, 211, 27, 183, 172, 103, 129, 22, 215, 108, 37, 102, 244, 108, 227, 147, 254, 135, 247, 127, 235, 86, 240, 126, 174, 231, 164, 57, 215, 253, 52, 223, 142, 166, 74, 53, 73, 13, 199 },
+                            PasswordSalt = new byte[] { 14, 111, 244, 136, 128, 1, 21, 167, 85, 182, 166, 241, 148, 196, 183, 104, 181, 114, 112, 213, 157, 26, 105, 117, 133, 214, 27, 30, 242, 184, 121, 159, 81, 111, 15, 166, 200, 28, 221, 237, 58, 187, 180, 56, 19, 65, 17, 167, 63, 126, 231, 26, 159, 155, 122, 232, 236, 129, 194, 162, 211, 158, 225, 255, 87, 41, 170, 220, 111, 4, 203, 128, 199, 175, 71, 225, 142, 62, 88, 194, 174, 197, 201, 184, 73, 0, 94, 124, 125, 152, 113, 231, 174, 169, 107, 83, 16, 233, 135, 157, 145, 41, 62, 41, 91, 134, 26, 30, 197, 252, 202, 11, 234, 42, 25, 170, 125, 83, 221, 220, 109, 199, 90, 129, 252, 74, 134, 219 },
                             Status = true
                         });
                 });
