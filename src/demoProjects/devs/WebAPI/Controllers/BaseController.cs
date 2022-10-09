@@ -11,5 +11,17 @@ namespace WebAPI.Controllers
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
+
+        protected string? GetIpAddress()
+        {
+            const string ForwardedHeader = "X-Forwarded-For";
+
+            if (Request.Headers.ContainsKey(ForwardedHeader))
+            {
+                return Request.Headers[ForwardedHeader];
+            }
+
+            return HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString();
+        }
     }
 }

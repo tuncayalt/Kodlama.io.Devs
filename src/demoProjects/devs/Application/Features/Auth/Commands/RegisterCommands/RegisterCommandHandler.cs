@@ -29,6 +29,9 @@ namespace Application.Features.Auth.Commands.RegisterCommands
             var createdApplicationUser = await _authenticationService.RegisterAsync(request);
             result.ApplicationUser = _mapper.Map<RegisteredDto>(createdApplicationUser);
             result.AccessToken = await _authenticationService.CreateAccessToken(createdApplicationUser);
+            result.RefreshToken = await _authenticationService.CreateRefreshToken(createdApplicationUser.User, request.IpAddress);
+
+            await _authenticationService.AddRefreshToken(result.RefreshToken);
 
             return result;
         }
