@@ -10,6 +10,8 @@ namespace Application.Features.Auth.Profiles
     {
         public MappingProfiles()
         {
+            CreateMap<RegisterDto, RegisterCommand>();
+
             CreateMap<ApplicationUser, RegisteredDto>()
                 .ForMember(dst => dst.Status, opt => opt.MapFrom(src => src.User.Status))
                 .ForMember(dst => dst.FirstName, opt => opt.MapFrom(src => src.User.FirstName))

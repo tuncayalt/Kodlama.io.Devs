@@ -1,9 +1,7 @@
 ﻿using Application.Features.Auth.Commands.RegisterCommands;
 using Application.Features.Auth.Commands.LoginCommands;
-using Application.Features.Auth.Dtos;
 using Application.Services.Repositories;
 using AutoMapper;
-using Core.Security.Dtos;
 using Core.Security.Entities;
 using Core.Security.Hashing;
 using Core.Security.JWT;
@@ -18,13 +16,21 @@ namespace Application.Services.AuthenticationServices
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly ITokenHelper _tokenHelper;
+        private readonly IRefreshTokenRepository _refreshTokenRepository;
 
-        public AuthenticationService(IApplicationUserRepository applicationUserRepository, IUserRepository userRepository, IMapper mapper, ITokenHelper tokenHelper)
+        public AuthenticationService(IApplicationUserRepository applicationUserRepository, IUserRepository userRepository, IMapper mapper, ITokenHelper tokenHelper, IRefreshTokenRepository refreshTokenRepository)
         {
             _applicationUserRepository = applicationUserRepository;
             _userRepository = userRepository;
             _mapper = mapper;
             _tokenHelper = tokenHelper;
+            _refreshTokenRepository = refreshTokenRepository;
+        }
+
+        public async Task<RefreshToken> AddRefreshToken(RefreshToken refreshToken)
+        {
+            var addedRefreshToken = await _refreshTokenRepository.AddAsync(refreshToken);
+            return addedRefreshToken;
         }
 
         public async Task<AccessToken> CreateAccessToken(ApplicationUser applicationUser)
@@ -32,6 +38,12 @@ namespace Application.Services.AuthenticationServices
             var claims = _applicationUserRepository.GetClaims(applicationUser);
             var accessToken = _tokenHelper.CreateToken(applicationUser.User, claims);
             return accessToken;
+        }
+
+        public async Task<RefreshToken> CreateRefreshToken(User user, string ipAddress)
+        {
+            RefreshToken refreshToken = _tokenHelper.CreateRefreshToken(user, ipAddress);
+            return await Task.FromResult(refreshToken);
         }
 
         public Task<ApplicationUser?> GetUserByEmailAsync(string email)
@@ -59,7 +71,7 @@ namespace Application.Services.AuthenticationServices
             var createdUser = await _userRepository.AddAsync(appUser.User);
             appUser.UserId = createdUser.Id;
             var createdAppUser = await _applicationUserRepository.AddAsync(appUser);
-            
+
             return createdAppUser;
         }
     }
