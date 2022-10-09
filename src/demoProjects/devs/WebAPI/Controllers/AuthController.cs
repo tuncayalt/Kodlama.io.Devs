@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
 
             SetRefreshTokenToCookie(result.RefreshToken);
 
-            return Created("", result);
+            return Created("", result.AccessToken);
         }
 
         [HttpPost("Login")]
