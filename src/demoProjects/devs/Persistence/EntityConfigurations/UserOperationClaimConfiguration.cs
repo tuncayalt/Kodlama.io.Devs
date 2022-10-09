@@ -16,7 +16,7 @@ namespace Persistence.EntityConfigurations
 
             var userOperationClaimSeeds = new List<UserOperationClaim>
             {
-                new(1, 1, 1), new(2, 1, 2), new(3, 1, 3)
+                new(1, 1, 1), new(2, 1, 2), new(3, 1, 3), new(4, 1, 7),
             };
             builder.HasData(userOperationClaimSeeds);
         }

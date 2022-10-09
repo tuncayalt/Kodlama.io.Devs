@@ -16,6 +16,7 @@ namespace Persistence.EntityConfigurations
             {
                 new(1, "Language.Add"), new(2, "Language.Update"), new(3, "Language.Delete"),
                 new(4, "Technology.Add"), new(5, "Technology.Update"), new(6, "Technology.Delete"),
+                new(7, "Admin"),
             };
             builder.HasData(operationClaimSeeds);
         }
